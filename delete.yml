@@ -1,0 +1,5 @@
+## conjur policy update -b conjur/authn-jwt -f delete.yml
+## conjur policy update -b data -f delete.yml
+
+- !delete
+  record: !group bnl/aks-team/aks-apps/aks-apps

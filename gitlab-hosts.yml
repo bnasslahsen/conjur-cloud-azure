@@ -1,0 +1,22 @@
+- !policy
+  id: azure-apps
+  owner: !group managers
+  body:
+    - &hosts
+      - !host
+        id: demos/hello-cloud-ci
+        annotations:
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/project_id: 4
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/ref: master
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/project_path: demos/hello-cloud-ci
+          authn/api-key: true
+      - !host
+        id: demos/hello-docker-ci
+        annotations:
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/project_id: 6
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/ref: main
+          authn-jwt/$CONJUR_AUTHENTICATOR_ID/project_path: demos/hello-docker-ci
+          authn/api-key: true
+    - !grant
+      role: !group
+      members: *hosts
