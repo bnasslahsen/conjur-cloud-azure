@@ -1,4 +1,4 @@
-## conjur policy update -b conjur/authn-jwt -f delete.yml
+## conjur policy update -b conjur/authn-azure -f delete.yml
 ## conjur policy update -b data -f delete.yml
 
 - !delete

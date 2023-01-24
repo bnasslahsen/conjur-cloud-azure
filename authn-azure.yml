@@ -1,35 +1,29 @@
 - !policy
-    id: $CONJUR_AUTHENTICATOR_ID
-    body:
+  id: $CONJUR_AUTHENTICATOR_ID
+  body:
     - !webservice
-
-      # Uncomment one of following variables depending on the public availability
-      # of the Service Account Issuer Discovery service in Kubernetes
-      # If the service is publicly available, uncomment 'jwks-uri'.
-      # If the service is not available, uncomment 'public-keys'
-      # - !variable jwks-uri
-    - !variable public-keys
-    - !variable issuer
-    - !variable token-app-property
-    - !variable identity-path
-    #- !variable audience
-
-    #Group of applications that can authenticate using this JWT Authenticator
-    - !group apps
-    - !permit
-        role: !group apps
-        privilege: [ read, authenticate ]
-        resource: !webservice
-    - !webservice
-        id: status
-
-    #Group of users who can check the status of the JWT Authenticator
+    - !variable
+      id: provider-uri
     - !group
-        id: operators
+      id: apps
+      annotations:
+        description: Group of hosts that can authenticate using the authn-azure/AzureWS1 authenticator
     - !permit
-        role: !group operators
-        privilege: [ read ]
-        resource: !webservice status
+      role: !group apps
+      privilege: [ read, authenticate ]
+      resource: !webservice
+    - !webservice
+      id: status
+      annotations:
+        description: Status service to check that the authenticator is configured correctly
+    - !group
+      id: operators
+      annotations:
+        description: Group of users who can check the status of the authenticator
+    - !permit
+      role: !group operators
+      privilege: [ read ]
+      resource: !webservice status
 
 - !grant
   role: !group $CONJUR_AUTHENTICATOR_ID/apps
