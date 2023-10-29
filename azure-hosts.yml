@@ -4,7 +4,6 @@
     annotations:
       authn-azure/subscription-id: 8b044dd6-a22d-4bc9-9541-88dcf78d3f4a
       authn-azure/resource-group: bnl-resource-group
-      #authn/api-key: true
 # Group of hosts that can authenticate using the authn-azure authenticator
 - !grant
   role: !group
