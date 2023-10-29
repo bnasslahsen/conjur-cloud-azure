@@ -1,0 +1,4 @@
+# Group of hosts that can consume secrets of the x-safe
+- !grant
+  role: !group delegation/consumers
+  member: !group /data/$APP_GROUP
