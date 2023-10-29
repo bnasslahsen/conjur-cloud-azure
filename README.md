@@ -6,27 +6,12 @@
 
 ## Azure Setup
 
-- Create BNL ROOT Branch - AS Security Admin
-```shell
-conjur policy update -b data -f root-branch.yml
-```
-
-- Create AZURE Branch - AS Security Admin
-```shell
-conjur policy update -b data/bnl -f azure-branch.yml
-```
-
-- Delegation on the branch for the team - AS Security Admin
-```shell
-conjur policy update -b data/vault -f azure-user-grants.yml
-```
-
-- Declare Azure authenticator - AS Security Admin
+- Declare Azure authenticator
 ```shell
 ./load-authenticator.sh
 ```
 
-- Declare Your Apps - AS Projects Team
+- Declare Your Apps
 ```shell
 ./load-hosts.sh
 ```

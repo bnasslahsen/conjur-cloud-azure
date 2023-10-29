@@ -1,3 +1,0 @@
-- !grant
-  role: !group bnl-azure-safe-admins
-  member: !group /data/bnl/azure-team/managers

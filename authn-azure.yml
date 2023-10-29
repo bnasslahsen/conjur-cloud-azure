@@ -4,12 +4,8 @@
     - !webservice
     - !variable
       id: provider-uri
-    - !group
-      id: apps
-      annotations:
-        description: Group of hosts that can authenticate using the authn-azure/AzureWS1 authenticator
     - !permit
-      role: !group apps
+      role: !group /data/$APP_GROUP
       privilege: [ read, authenticate ]
       resource: !webservice
     - !webservice
@@ -24,7 +20,3 @@
       role: !group operators
       privilege: [ read ]
       resource: !webservice status
-
-- !grant
-  role: !group $CONJUR_AUTHENTICATOR_ID/apps
-  member: !group /$AZURE_IDENTITY
